@@ -23,7 +23,6 @@ services:
   trezor-user-env-arm-mac:
     container_name: trezor-user-env-arm.mac
     image: trezor-user-env-arm.mac #this should be then replaced by image that is build by ci, for now "docker buildx build -t trezor-user-env-arm.mac . -f ./docker/arm-docker/Dockerfile --load"
-
     ports:
       - "9001:9001"
       - "21326:21326"

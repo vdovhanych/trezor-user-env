@@ -8,7 +8,7 @@ This environment is meant to support Trezor development - both Firmware and Suit
   - Send simple debug commands to the emulator.
 - Enable full integration testing of Suite, firmware emulator and Bridge using the websocket server.
 - Provide a HTML page that communicates with the server. This allows the developers to perform the actions above.
-- To be Nix-native but also offer Docker image to allow non-NixOS 
+- To be Nix-native but also offer Docker image to allow non-NixOS
 developers to use it.
 
 ## How to run
@@ -43,7 +43,7 @@ You need:
 
 Download these as you are used to. We recommend using `nix` or `brew`, but that's your fight.
 
-#### Run it
+#### Run it for Intel Mac
 
 1. Run XQuartz and leave it running on the background. Wait till it is launched.
 2. In XQuartz settings go to Preferences > Security and enable "Allow connections from network clients".
@@ -51,6 +51,18 @@ Download these as you are used to. We recommend using `nix` or `brew`, but that'
 4. Download the latest docker build: `docker-compose -f ./docker/compose.yml pull trezor-user-env-mac`
 5. Run it: `docker-compose -f ./docker/compose.yml up trezor-user-env-mac`
 6. Open http://localhost:21326.
+
+For a future use you can omit the second step and run `up` (the third step) directly. **However, you will not have the latest master builds then!**
+
+#### Run it for Apple Silicon (M1) Mac
+
+1. Run XQuartz and leave it running on the background. Wait till it is launched.
+2. In XQuartz settings go to Preferences > Security and enable "Allow connections from network clients".
+3. Open a new terminal window (not in XQuartz) and add yourself to the X access control list: `xhost +127.0.0.1` (you will probably need to logout/login after XQuartz installation to have `xhost` command available)
+4. Build docker image locally for ARM using buildx `docker buildx build -t trezor-user-env-arm.mac . -f ./docker/arm-docker/Dockerfile --load`
+5. TODO: Download the latest docker build: `docker-compose -f ./docker/compose.yml pull trezor-user-env-mac`
+6. TODO: Run it: `docker-compose -f ./docker/compose.yml up trezor-user-env-arm-mac`
+7. Open http://localhost:21326.
 
 For a future use you can omit the second step and run `up` (the third step) directly. **However, you will not have the latest master builds then!**
 
