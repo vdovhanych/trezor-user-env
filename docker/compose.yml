@@ -19,3 +19,14 @@ services:
       - "127.0.0.1:21325:21326" # macos needs proxy to override the "origin" of the trezord request
     environment:
       - DISPLAY=docker.for.mac.host.internal:0
+
+  trezor-user-env-arm-mac:
+    container_name: trezor-user-env-arm.mac
+    image: trezor-user-env-arm.mac #this should be then replaced by image that is build by ci, for now "buildx build -t trezor-user-env-arm.mac . -f ./docker/Dockerfile --load"
+
+    ports:
+      - "9001:9001"
+      - "21326:21326"
+      - "127.0.0.1:21325:21326" # macos needs proxy to override the "origin" of the trezord request
+    environment:
+      - DISPLAY=docker.for.mac.host.internal:0
