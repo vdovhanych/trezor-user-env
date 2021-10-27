@@ -3,6 +3,8 @@ set -e -o pipefail
 
 SITE="https://firmware.corp.sldev.cz/releases/emulators/"
 CORE_LATEST_BUILD="https://gitlab.com/satoshilabs/trezor/trezor-firmware/-/jobs/artifacts/master/download?job=core%20unix%20frozen%20debug%20build"
+# TODO: This will be replaced with the build from the CI job.
+CORE_LATEST_ARM_BUILD="https://github.com/vdovhanych/test-nixos/releases/download/v1/trezor-emu-core-v2-master-arm64"
 LEGACY_LATEST_BUILD="https://gitlab.com/satoshilabs/trezor/trezor-firmware/-/jobs/artifacts/master/download?job=legacy%20emu%20regular%20debug%20build"
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
@@ -14,6 +16,9 @@ if ! wget --no-config -e robots=off --no-verbose --no-clobber --no-parent --cut-
   echo "You will have only available latest builds from CI"
   echo
 fi
+
+# TODO: This will be moved down after we have emulator build from CI job.
+wget --no-config "$CORE_LATEST_ARM_BUILD"
 
 # download emulator from master
 TMP_DIR="$BIN_DIR/tmp"
