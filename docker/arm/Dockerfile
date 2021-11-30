@@ -22,13 +22,13 @@ WORKDIR ./trezor-user-env
 RUN ls /
 RUN ls /trezor-user-env
 
-RUN nix-shell --run "./src/binaries/firmware/bin/download.sh"
-RUN nix-shell --run "./src/binaries/trezord-go/bin/download.sh"
+RUN nix-shell --run "./trezor-user-env/src/binaries/firmware/bin/download.sh"
+RUN nix-shell --run "./trezor-user-env/src/binaries/trezord-go/bin/download.sh"
 
-RUN nix-shell --run "./docker/create_version_file.sh"
+RUN nix-shell --run "./trezor-user-env/docker/create_version_file.sh"
 
 RUN rm -rf /var/tmp/trezor.flash
 
 RUN nix-shell --run "echo deps pre-installed"
 
-CMD nix-shell --run './run.sh'
+CMD nix-shell --run './trezor-user-env/run.sh'
