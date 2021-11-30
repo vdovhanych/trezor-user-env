@@ -25,13 +25,13 @@ RUN ls /trezor-user-env
 # updates the nix-channel to have latest changes
 RUN nix-channel --update
 
-RUN nix-shell --run "./trezor-user-env/src/binaries/firmware/bin/download.sh"
-RUN nix-shell --run "./trezor-user-env/src/binaries/trezord-go/bin/download.sh"
+RUN nix-shell --run "./home/runner/work/trezor-user-env/trezor-user-env/src/binaries/firmware/bin/download.sh"
+RUN nix-shell --run "./home/runner/work/trezor-user-env/trezor-user-env/trezord-go/bin/download.sh"
 
-RUN nix-shell --run "./trezor-user-env/docker/create_version_file.sh"
+RUN nix-shell --run "./home/runner/work/trezor-user-env/trezor-user-env/trezor-user-env/docker/create_version_file.sh"
 
 RUN rm -rf /var/tmp/trezor.flash
 
 RUN nix-shell --run "echo deps pre-installed"
 
-CMD nix-shell --run './trezor-user-env/run.sh'
+CMD nix-shell --run './home/runner/work/trezor-user-env/trezor-user-env/trezor-user-env/run.sh'
